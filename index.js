@@ -1,0 +1,28 @@
+const express = require('express')
+const dotenv = require('dotenv').config()
+const app = express()
+app.use(express.json())
+
+// Routes
+const charactersRoute = require('./routes/characters')
+const comicsRoute = require('./routes/comics')
+app.use(charactersRoute)
+app.use(comicsRoute)
+
+
+
+app.all('*', (req, res) => {
+    res.status(404).json("This route does not exist")
+})
+
+
+
+if (process.env.PORT) {
+    app.listen(process.env.PORT, () => {
+        console.log("Server started");
+    });
+} else {
+    app.listen(3000, () => {
+        console.log("Server started");
+    });
+}
