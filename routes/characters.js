@@ -7,8 +7,10 @@ const axios = require('axios')
 // Route pour récuperer la liste des personnages marvel par 100
 router.get('/characters', async (req, res) => {
     try {
-        const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&limit=100`)
-        console.log(response.data);
+        const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&limit=${req.query.limit}&skip=${req.query.skip}`)
+        // console.log(response.data);
+        // console.log(req.query);
+
         res.status(200).json(response.data)
     } catch (error) {
         res.status(500).json({ message: error.message })
