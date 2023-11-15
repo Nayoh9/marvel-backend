@@ -1,16 +1,21 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
-const cors = require("cors")
+const cors = require('cors')
+
+
 const app = express()
 app.use(express.json())
+app.use(cors())
 
-app.use(cors)
 
 // Routes
 const charactersRoute = require('./routes/characters')
 const comicsRoute = require('./routes/comics')
 app.use(charactersRoute)
 app.use(comicsRoute)
+
+// Faire attention au parentheses pour eviter de perde 30min
+app.use(cors())
 
 
 
@@ -26,6 +31,6 @@ if (process.env.PORT) {
     });
 } else {
     app.listen(3000, () => {
-        console.log("Server started");
+        console.log("Server started 3000");
     });
 }
