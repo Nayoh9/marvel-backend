@@ -17,13 +17,9 @@ app.use(comicsRoute)
 // Faire attention au parentheses pour eviter de perde 30min
 app.use(cors())
 
-
-
 app.all('*', (req, res) => {
     res.status(404).json("This route does not exist")
 })
-
-
 
 if (process.env.PORT) {
     app.listen(process.env.PORT, () => {
