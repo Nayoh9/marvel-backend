@@ -22,29 +22,21 @@ router.get('/comics', async (req, res) => {
 // Attend en params les id contenus dans la clef comics de chaque super héro
 router.get('/comics/comics/:id', async (req, res) => {
     try {
-        // console.log(req.params.id);
 
-        // je récupere mes params sous chaine de caractère je les clean puis les transforme en tableau
-        const comicsId = req.params.id.replace("}", "")
-            .split(',')
+        // Nettoyage du tableau
+        const comicsId = req.params.id.replace("}", "").split(',')
+        console.log(comicsId);
+        // map pour récuperer tous les id
+        const comicsPromises = comicsId.map(async (id) => {
+            console.log(id);
+            const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comic/${id}?apiKey=${process.env.MARVEL_API_KEY}`)
+            return response.data
+        })
 
-        const comicsToSend = []
+        // promise.all attend la résolution de toutes les promesses avant d'envoyer la réponse
+        const comicsToSend = await Promise.all(comicsPromises)
 
-        for (let i = 0; i < comicsId.length; i++) {
-            // console.log(comicsId[i]); 
-
-            // Je passe en params la valeur de i à chaque tour pour récuperer ses infos
-            const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comic/${comicsId[i]}?apiKey=${process.env.MARVEL_API_KEY}`)
-
-            console.log(response.data);
-
-            // A chaque tour je push la reponse de l'api dans mon tableau
-            comicsToSend.push(response.data)
-        }
-
-        // J'envoie mon tableau
         res.json(comicsToSend)
-
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
