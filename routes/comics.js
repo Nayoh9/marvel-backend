@@ -28,7 +28,7 @@ router.get('/comics/comics/:id', async (req, res) => {
         console.log(comicsId);
         // map pour récuperer tous les id
         const comicsPromises = comicsId.map(async (id) => {
-            console.log(id);
+
             const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comic/${id}?apiKey=${process.env.MARVEL_API_KEY}`)
             return response.data
         })
