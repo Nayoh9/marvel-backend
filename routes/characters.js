@@ -16,25 +16,13 @@ router.get('/characters', async (req, res) => {
 // Route pour récuperer tous les informations d'un personnage avec son id 
 router.get('/character/:id', async (req, res) => {
     try {
-        const id = req.params.id.replace("}", "")
+        // console.log(req.params.id);
+        const id = req.params.id
 
-        const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/character/${id}?apiKey=${process.env.MARVEL_API_KEY}`)
+        const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comics/${id}?apiKey=${process.env.MARVEL_API_KEY}`)
+        // console.log(response.data);
 
-        const comics = response.data.comics
-        // console.log(comics);
-
-        const tabComics = []
-
-        comics.map(async (comic) => {
-            // console.log(comic);
-            const responseComic = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comic/${comic}?apiKey=${process.env.MARVEL_API_KEY}`)
-
-            tabComics.push(responseComic.data)
-
-            if (tabComics.length === comics.length) {
-                res.status(200).json(tabComics)
-            }
-        })
+        res.status(200).json(response.data)
 
     } catch (error) {
         res.status(500).json({ message: error.message })
