@@ -1,7 +1,10 @@
+// Package import
 const express = require('express')
 const dotenv = require('dotenv').config()
 const cors = require('cors')
+const mongoose = require('mongoose');
 
+mongoose.connect(process.env.MONGODB_IP)
 
 const app = express()
 app.use(express.json())
@@ -11,11 +14,12 @@ app.use(cors())
 // Routes
 const charactersRoute = require('./routes/characters')
 const comicsRoute = require('./routes/comics')
+usersRoute = require('./routes/user')
+// Routes
+
 app.use(charactersRoute)
 app.use(comicsRoute)
-
-// Faire attention au parentheses pour eviter de perde 30min
-app.use(cors())
+app.use(usersRoute)
 
 app.all('*', (req, res) => {
     res.status(404).json("This route does not exist")
