@@ -9,6 +9,10 @@ const encBase64 = require("crypto-js/enc-base64"); // Transforme l'encryptage en
 // Model import 
 const User = require('../Models/User')
 
+// Function import 
+
+const isAuthenticated = require("../middlewares/isAuthenticated")
+
 // Route to create a new user
 router.post('/signup', async (req, res) => {
     console.log(req.body);
@@ -73,8 +77,6 @@ router.post('/signup', async (req, res) => {
     } catch (error) {
         console.log({ message: error.message });;
     }
-
-
 })
 
 // Route to connect an existing account in DB 
@@ -83,23 +85,63 @@ router.post("/signin", async (req, res) => {
     try {
         const { email, password } = req.body
 
-        console.log(req.body);
 
-        const existInDb = User.findOne({ email: email })
-
-        if (existInDb) {
+        if (!email || !email.trim()) {
             return res.status(400).json('Wrong email or password')
         }
 
-        res.status(200).json('La rouuute')
+        if (!password || !password.trim()) {
+            return res.status(400).json('Wrong email or password')
+        }
+
+        const existInDb = await User.findOne({ email: email })
+
+        if (!existInDb) {
+            return res.status(400).json('Wrong email or password')
+        }
+
+        const hash2 = SHA256(password + existInDb.salt).toString(encBase64)
+
+        if (hash2 === existInDb.hash) {
+            console.log("same");
+            return res.status(200).json(existInDb.token)
+
+        } else {
+            return res.status(400).json("Wrong email or password")
+        }
+
+
 
     } catch (error) {
         console.log({ message: error.message })
     }
 
-
-
-
 })
+
+// Route to update the favlist of an existing user 
+router.put("/user/update", isAuthenticated, async (req, res) => {
+    try {
+        console.log(req.body);
+        const { key_fav_list, value_fav_list } = req.body
+
+        console.log(value_fav_list);
+
+        const bearer = req.headers.authorization
+        const token = bearer.replace("Bearer ", "")
+        const user = await User.findOneAndUpdate({ token: token }, {
+            [key_fav_list]: value_fav_list
+        })
+
+        await User.save
+
+        res.json('update rouuutee')
+
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+// Route to find user with token 
+
 
 module.exports = router
