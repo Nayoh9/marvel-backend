@@ -143,5 +143,18 @@ router.put("/user/update", isAuthenticated, async (req, res) => {
 
 // Route to find user with token 
 
+router.get("/user/find", isAuthenticated, async (req, res) => {
+    try {
+        const bearer = req.headers.authorization
+        const token = bearer.replace("Bearer ", "")
+        const user = await User.findOne({ token: token })
+        console.log(user.fav_list);
+        res.status(200).json(user.fav_list)
+
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
 
 module.exports = router
