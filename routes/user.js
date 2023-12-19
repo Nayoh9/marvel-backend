@@ -1,7 +1,6 @@
 // Package import
 const express = require("express")
 const router = express.Router()
-const axios = require('axios')
 const uid = require('uid2'); // Generation de string
 const SHA256 = require("crypto-js/sha256"); // Encryptage de string
 const encBase64 = require("crypto-js/enc-base64"); // Transforme l'encryptage en string
@@ -10,7 +9,6 @@ const encBase64 = require("crypto-js/enc-base64"); // Transforme l'encryptage en
 const User = require('../Models/User')
 
 // Function import 
-
 const isAuthenticated = require("../middlewares/isAuthenticated")
 
 // Route to create a new user
@@ -134,21 +132,21 @@ router.put("/user/update", isAuthenticated, async (req, res) => {
 
         await User.save
 
-        res.json('update rouuutee')
+        res.status(200).json(user)
 
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
 })
 
-// Route to find user with token 
+// Route to find a user favlist with its token 
 
 router.get("/user/find", isAuthenticated, async (req, res) => {
     try {
         const bearer = req.headers.authorization
         const token = bearer.replace("Bearer ", "")
         const user = await User.findOne({ token: token })
-        console.log(user.fav_list);
+        // console.log(user.fav_list);
         res.status(200).json(user.fav_list)
 
     } catch (error) {
