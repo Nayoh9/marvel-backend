@@ -13,11 +13,10 @@ const isAuthenticated = require("../middlewares/isAuthenticated")
 
 // Route to create a new user
 router.post('/signup', async (req, res) => {
-    console.log(req.body);
+
 
     try {
         const { username, email, password, confirmPassword } = req.body
-        console.log(req.body);
 
         if (!username || !username.trim()) {
             console.log("You need a name to signin");
@@ -101,7 +100,6 @@ router.post("/signin", async (req, res) => {
         const hash2 = SHA256(password + existInDb.salt).toString(encBase64)
 
         if (hash2 === existInDb.hash) {
-            console.log("same");
             return res.status(200).json(existInDb.token)
 
         } else {
@@ -122,7 +120,7 @@ router.put("/user/update", isAuthenticated, async (req, res) => {
         console.log(req.body);
         const { key_fav_list, value_fav_list } = req.body
 
-        console.log(value_fav_list);
+        // console.log(value_fav_list);
 
         const bearer = req.headers.authorization
         const token = bearer.replace("Bearer ", "")
