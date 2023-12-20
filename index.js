@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_IP)
 
-const hello = "test"
 
 const app = express()
 app.use(express.json())
