@@ -43,6 +43,8 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json('You need an email to Sign up')
         }
 
+
+
         const existInDb = await User.findOne({ email: email })
 
         if (existInDb) {
@@ -52,6 +54,7 @@ router.post('/signup', async (req, res) => {
         const token = uid(16)
         const salt = uid(16)
         const hash = SHA256(password + salt).toString(encBase64)
+
 
         const user = new User({
             username: username,
@@ -125,8 +128,6 @@ router.put("/user/update", isAuthenticated, async (req, res) => {
         const user = await User.findOneAndUpdate({ token: token }, {
             [key_fav_list]: value_fav_list
         })
-
-        await User.save
 
         res.status(200).json(user)
 
