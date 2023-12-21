@@ -19,17 +19,17 @@ router.post('/signup', async (req, res) => {
         const { username, email, password, confirmPassword } = req.body
 
         if (!username || !username.trim()) {
-            console.log("You need a name to signin");
-            return res.status(400).json("You need a name to signin")
+            console.log("You need a name to Sign up");
+            return res.status(400).json("You need a name to Sign up")
         }
 
         if (!password || !password.trim()) {
-            console.log("You need a password to signin");
-            return res.status(400).json("You need a password to signin")
+            console.log("You need a password to Sign up");
+            return res.status(400).json("You need a password to Sign up")
         }
 
         if (password !== confirmPassword) {
-            console.log("passwords must be the same");
+            console.log("Passwords must be the same");
             return res.status(400).json("Passwords must be the same")
         }
 
@@ -41,13 +41,13 @@ router.post('/signup', async (req, res) => {
         }
 
         if (!email || !email.trim() || count !== 1) {
-            return res.status(400).json('You need an email to signin')
+            return res.status(400).json('You need an email to Sign up')
         }
 
         const existInDb = await User.findOne({ email: email })
 
         if (existInDb) {
-            return res.status(400).json("this email already exist")
+            return res.status(400).json("This email address is already in use")
         }
 
         const token = uid(16)
