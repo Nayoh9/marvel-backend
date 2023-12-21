@@ -43,8 +43,6 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json('You need an email to Sign up')
         }
 
-
-
         const existInDb = await User.findOne({ email: email })
 
         if (existInDb) {
