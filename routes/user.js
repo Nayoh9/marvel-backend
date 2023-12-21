@@ -14,7 +14,6 @@ const isAuthenticated = require("../middlewares/isAuthenticated")
 // Route to create a new user
 router.post('/signup', async (req, res) => {
 
-
     try {
         const { username, email, password, confirmPassword } = req.body
 
@@ -117,7 +116,6 @@ router.post("/signin", async (req, res) => {
 // Route to update the favlist of an existing user 
 router.put("/user/update", isAuthenticated, async (req, res) => {
     try {
-        console.log(req.body);
         const { key_fav_list, value_fav_list } = req.body
 
         // console.log(value_fav_list);
