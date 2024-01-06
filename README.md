@@ -98,14 +98,14 @@ To connect an existing account in DB
 
 ### The two following routes are only usable if you are connected with a user account.
 
-### /user/find 
+### /user/find (get) 
 
 To retrieve a user's favorite list array using the user token and subsequently update the array with the following route
 
 <br>
 <br>
 
-### /user/update 
+### /user/update (put)
 
 To update the favorite list of an existing account
 
