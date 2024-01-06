@@ -71,6 +71,20 @@ To get comic informations with its ID
 <br>
 
 
+## User
+
+To create a new user
+
+### /signup (post)
+
+| User     | type   | Required |
+| -------- | -------| -------- |
+|`username`| string | Yes      |
+|`email`   | string | Yes      |
+
+
+
+
 
 
 
