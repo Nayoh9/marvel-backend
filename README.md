@@ -21,7 +21,6 @@ To get a list Marvel character 100 by 100
 <br>
 <br>
 
-
 ### /character/:id (get) 
 
 To get character informations with its ID 
@@ -62,14 +61,12 @@ To get comic informations with its ID
 | ----------------- | ----------- | -------- |
 | `id`              | mongoDB id  | Yes      |
 
-
 | Query   | type   | Required |
 | --------| -------| -------- |
 |`apiKey` | string | Yes      |
 
 <br>
 <br>
-
 
 ## User
 
@@ -84,7 +81,6 @@ To create a new user
 |`password`       | string | Password of your choice (passwords are not stored in the DB and are encrypted).|
 |`confirmPassword`| string | Must be the same as password                                                   |
 
-
 <br>
 <br>
 
@@ -97,11 +93,10 @@ To connect an existing account in DB
 |`email`   | string | The email that you have choosen to create your account    |
 |`password`| string | The password that you have choosen to create your account |
 
-
 <br>
 <br>
 
-## The two following routes are only usable if you are connected with a user account.
+### The two following routes are only usable if you are connected with a user account.
 
 ### /user/find 
 
