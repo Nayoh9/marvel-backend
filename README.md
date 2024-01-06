@@ -3,7 +3,7 @@
 
 Before you go, please ensure you get yourself an API key at https://lereacteur-marvel-api.netlify.app/documentation.
 
-For all the request, API adress is : https://lereacteur-marvel-api.herokuapp.com
+For all requests, the API address is: https://lereacteur-marvel-api.herokuapp.com
 
 ## Characters
 
@@ -34,6 +34,24 @@ To get character informations with its ID
 | Query   | type   | Required |
 | --------| -------| -------- |
 |`apiKey` | string | Yes      |
+
+<br>
+<br>
+
+## Comics
+
+### /comics (get) 
+
+To get a list Marvel comics 100 by 100 
+
+| Query             | Type    | Required |
+| ----------------- | ------- | -------- |
+| `apiKey`          | string  | Yes      |
+| `limit`           | number  | No       |
+| `skip`            | number  | No       |
+| `title`           | string  | No       |
+
+
 
 
 
