@@ -73,18 +73,33 @@ To get comic informations with its ID
 
 ## User
 
-To create a new user
-
 ### /signup (post)
 
-| User     | type   | Required |
-| -------- | -------| -------- |
-|`username`| string | Yes      |
+To create a new user
+
+| Body            | type   | Required |
+| --------------- | ------ | -------- |
+|`username`       | string | Yes      |
+|`email`          | string | Yes      |
+|`password`       | string | Yes      |
+|`confirmPassword`| string | Yes      |
+
+
+<br>
+<br>
+
+### /signin (post)
+
+To connect an existing account in DB
+
+| Body     | type   | Required |
+| -------- | ------ | -------- |
 |`email`   | string | Yes      |
+|`password`| string | Yes      |
 
 
-
-
+<br>
+<br>
 
 
 
