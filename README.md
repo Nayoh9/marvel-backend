@@ -101,7 +101,7 @@ To connect an existing account in DB
 <br>
 <br>
 
-## Thefollowing route is only usable if you are connected with a user account.
+## The following route is only usable if you are connected with a user account.
 
 ### /user/update 
 
