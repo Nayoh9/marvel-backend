@@ -22,7 +22,7 @@ To get a list Marvel character 100 by 100
 <br>
 
 
-### /characters/:id (get) 
+### /character/:id (get) 
 
 To get character informations with its ID 
 
@@ -51,7 +51,24 @@ To get a list Marvel comics 100 by 100
 | `skip`            | number  | No       |
 | `title`           | string  | No       |
 
+<br>
+<br>
 
+### /comic/:id (get) 
+
+To get comic informations with its ID 
+
+| Params            | Info        | Required |
+| ----------------- | ----------- | -------- |
+| `id`              | mongoDB id  | Yes      |
+
+
+| Query   | type   | Required |
+| --------| -------| -------- |
+|`apiKey` | string | Yes      |
+
+<br>
+<br>
 
 
 
