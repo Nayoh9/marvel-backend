@@ -77,12 +77,12 @@ To get comic informations with its ID
 
 To create a new user
 
-| Body            | type   | Required |
-| --------------- | ------ | -------- |
-|`username`       | string | Yes      |
-|`email`          | string | Yes      |
-|`password`       | string | Yes      |
-|`confirmPassword`| string | Yes      |
+| Body            | type   | Description|
+| --------------- | ------ | ------------------------------------------------------------------------------ | 
+|`username`       | string | Username of your choice                                                        |
+|`email`          | string | One of your emails.                                                            |
+|`password`       | string | Password of your choice (passwords are not stored in the DB and are encrypted).|
+|`confirmPassword`| string | Must be the same as password                                                   |
 
 
 <br>
@@ -92,25 +92,32 @@ To create a new user
 
 To connect an existing account in DB
 
-| Body     | type   | Required |
+| Body     | type   | Description |
 | -------- | ------ | -------- |
-|`email`   | string | Yes      |
-|`password`| string | Yes      |
+|`email`   | string | The email that you have choosen to create your account    |
+|`password`| string | The password that you have choosen to create your account |
 
 
 <br>
 <br>
 
-## The following route is only usable if you are connected with a user account.
+## The two following routes are only usable if you are connected with a user account.
+
+### /user/find 
+
+To retrieve a user's favorite list array using the user token and subsequently update the array with the following route
+
+<br>
+<br>
 
 ### /user/update 
 
 To update the favorite list of an existing account
 
-| Body           | type   | Required |
+| Body           | type   | Description |
 | -------------- | ------ | -------- |
-|`key_fav_list`  | string | Yes      |
-|`value_fav_list`| array  | Yes      |
+|`key_fav_list`  | string | The key corresponding to the favorites array of the connected user. |
+|`value_fav_list`| array  | The new favorite list array assigned to the connected user          |
 
 
 
