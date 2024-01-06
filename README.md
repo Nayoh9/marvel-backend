@@ -101,9 +101,18 @@ To connect an existing account in DB
 <br>
 <br>
 
-The following route is only usable if you are connected with a user account.
+## The two following routes are only usable if you are connected with a user account.
 
 ### /user/update 
+
+To update the favorite list of an existing account
+
+| Body           | type   | Required |
+| -------------- | ------ | -------- |
+|`key_fav_list`  | string | Yes      |
+|`value_fav_list`| array  | Yes      |
+
+
 
 
 
