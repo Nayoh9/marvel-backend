@@ -4,7 +4,7 @@ const router = express.Router()
 const axios = require('axios')
 
 
-// Route to recover a list Marvel character 100 by 100 
+// Route to get a list Marvel character 100 by 100 
 router.get('/characters', async (req, res) => {
     try {
         const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&limit=${req.query.limit}&skip=${req.query.skip}&name=${req.query.name}`)
@@ -15,7 +15,7 @@ router.get('/characters', async (req, res) => {
     }
 })
 
-// Route to recover character informations with its ID 
+// Route to get character informations with its ID 
 router.get('/character/:id', async (req, res) => {
     try {
         // console.log(req.params.id);

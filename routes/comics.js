@@ -4,7 +4,7 @@ const router = express.Router()
 const axios = require('axios')
 
 
-// Route to recover comics
+// Route to get comics hundred by hundred
 router.get('/comics', async (req, res) => {
     try {
         // console.log(req.query);
